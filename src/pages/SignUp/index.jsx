@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/auth';
 
 export const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { signUp } = useContext(AuthContext);
+
   function handleSubmit(e){
     e.preventDefault();
-    alert('Click')
+    
+    if(name !== '' && email !== '' && password !== '' ){
+      signUp(email, password, name)
+    }
   }
 
   return (
